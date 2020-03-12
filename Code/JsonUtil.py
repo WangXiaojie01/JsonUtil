@@ -9,15 +9,19 @@ author: wangxiaojie
 import os,sys
 import json
 import traceback
+import logging
 
 __all__ = [
     "getJsonFromFile",
     "getJsonFromStr",
     "valueFromJsonFile",
     "valueFromJsonStr",
-    "saveJsonFile"
+    "saveJsonFile",
+    "jsonLogger"
     ]
-          
+
+jsonLogger = logging.Logger("JsonUtil")
+
 def getJsonFromFile(filename):
     try:
         fp = open(filename)
@@ -27,7 +31,7 @@ def getJsonFromFile(filename):
         fp.close()
         return True, jobject 
     except Exception as e:
-        print("exception is %s" % e)
+        jsonLogger.error("exception is %s" % e)
         return False, "%s"%e
 
 def getJsonFromStr(jsonstr):
@@ -35,7 +39,7 @@ def getJsonFromStr(jsonstr):
         jobject = json.loads(jsonstr)
         return True, jobject
     except Exception as e:
-        print("exception is %s" % e)
+        jsonLogger.error("exception is %s" % e)
         return False, "%s"%e
 
 def valueFromJsonFile(key, filename):
