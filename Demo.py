@@ -58,3 +58,15 @@ if __name__ == "__main__":
         print("save json data success")
     else:
         print(msg)
+
+    #从字典中获取指定键的值，若找不到指定键，则返回"default"的值
+    # 若"default"都没有，返回None
+    # 如果传入的第二个参数不是字典，则直接返回传入的第二的参数
+    jsonObj = {"key1": "value1", "key2": "value2", "default": "defaultvalue"}
+    value, result = getDefaultFromJsonObj("key1", jsonObj)
+    print(value)
+    value, result = getDefaultFromJsonObj("key3", jsonObj)
+    print(value)
+
+    value, result = getDefaultFromJsonObj("test", "test a value")
+    print(value)

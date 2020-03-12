@@ -17,6 +17,7 @@ __all__ = [
     "valueFromJsonFile",
     "valueFromJsonStr",
     "saveJsonFile",
+    "getDefaultFromJsonObj",
     "jsonLogger"
     ]
 
@@ -69,3 +70,20 @@ def saveJsonFile(filepath, data):
         return True, "success"
     except Exception as e:
         return False, "%s"%e
+
+def getDefaultFromJsonObj(key, jsonObj):
+    if key and jsonObj:
+        if isinstance(jsonObj, dict):
+            if key in jsonObj:
+                return jsonObj[key], 'success'
+            elif 'default' in jsonObj:
+                return jsonObj['default'], 'success'
+            else:
+                errorStr = '%s is not found in jsonObj' % key
+                jsonLogger.error(errorStr)
+                return None, errorStr
+        else:
+            return jsonObj, 'success'
+    else:
+        jsonLogger.error('key or jsonObj is None')
+        return None, 'key or jsonObj is None'
