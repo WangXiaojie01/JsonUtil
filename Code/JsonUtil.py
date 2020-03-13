@@ -18,6 +18,7 @@ __all__ = [
     "valueFromJsonStr",
     "saveJsonFile",
     "getDefaultFromJsonObj",
+    "combineUnitList",
     "jsonLogger"
     ]
 
@@ -87,3 +88,16 @@ def getDefaultFromJsonObj(key, jsonObj):
     else:
         jsonLogger.error('key or jsonObj is None')
         return None, 'key or jsonObj is None'
+
+def combineUnitList(list1, list2):
+    newList =[]
+    if list1:
+        for item in list1:
+            if not item in newList:
+                newList.append(item)
+    if list2:
+        for item in list2:
+            if not item in newList:
+                newList.append(item)
+    return newList
+

@@ -70,3 +70,9 @@ if __name__ == "__main__":
 
     value, result = getDefaultFromJsonObj("test", "test a value")
     print(value)
+
+    #合并两个列表
+    list1 = [3, 5, 7, 6, 9]
+    list2 = [4, 7, 3, 6, 8]
+    newList = combineUnitList(list1, list2)
+    print("newList is %s" % newList)
