@@ -8,7 +8,6 @@ author: wangxiaojie
 
 import os,sys
 import json
-import traceback
 import logging
 
 __all__ = [
